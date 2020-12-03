@@ -1,0 +1,73 @@
+.list-item {
+    font-size: 24px;
+    line-height: 1.5em;
+    padding: 14px 14px 20px 40px;
+    height: 40px;
+}
+
+.list-item:hover:nth-child(even), .list-item:hover:nth-child(odd) {
+    background: aliceblue
+}
+
+.list-item:nth-child(even) {
+    background: lightskyblue;
+}
+
+.list-item:nth-child(odd) {
+    background: deepskyblue;
+}
+
+.done {
+    text-decoration: line-through;
+}
+
+.buttons {
+    float: right;
+    display: none;
+}
+
+.buttons button {
+    margin: 5px;
+    font-size: large;
+    border-radius: 50px;
+}
+
+.list-item:hover .buttons {
+    display: inline;
+}
+
+.badge {
+    border-radius: 50px;
+    font-size: small;
+    background-color: lightgray;
+    margin-left: 10px;
+    padding: 5px;
+}
+
+.warning {
+    background-color: indianred;
+}
+
+.delete {
+    width: 12px;
+}
+
+.list-item .DateInput_input {
+    width: 108px;
+}
+
+@media only screen and (max-width: 768px) {
+    .list-item {
+        text-align: center;
+        height: 100px;
+    }
+
+    .buttons {
+        float: none;
+        display: block;
+    }
+
+    .list-item:hover .buttons {
+        display: block;
+    }
+}
