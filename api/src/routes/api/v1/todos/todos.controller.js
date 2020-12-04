@@ -32,11 +32,7 @@ exports.getTodos = (req, res, next) => {
 }
 
 exports.updateTodo = function (req, res, next) {
-    const todo = {
-        id: req.body.id,
-        completed: req.body.completed
-    }
-    Todos.update({id: req.body.id}, todo, function (err, todo) {
+    Todos.update({id: req.body.id}, req.body, function (err, todo) {
         if (err) {
             res.json({
                 error: err
