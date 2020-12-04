@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {add} from '../../store/TodoListSlice';
+import {useDispatch, useSelector} from 'react-redux';
+import {addTodo, todos} from '../../store/TodoListSlice';
 import arrow from '../../add.svg';
 import './AddTodo.css';
 
@@ -9,10 +9,17 @@ function AddTodo() {
 
     const dispatch = useDispatch();
 
+    const todoArray = useSelector(todos);
+
     const handleSubmit = e => {
         const text = e.target.value.trim();
         if (e.which === 13 && text) {
-            dispatch(add(text));
+            dispatch(addTodo({
+                id: todoArray.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
+                text: text,
+                completed: false,
+                deadline: null
+            }));
             setInputValue("");
         }
     }

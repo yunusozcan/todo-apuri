@@ -1,0 +1,5 @@
+{
+  "apiUrl": "http://localhost:3001",
+  "apiEndpoint": "/api",
+  "version": "/v1"
+}

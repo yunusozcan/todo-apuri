@@ -4,7 +4,7 @@ import {SingleDatePicker} from "react-dates";
 import {useDispatch} from 'react-redux';
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
-import {remove, done, undone, addDeadline} from '../../store/TodoListSlice';
+import {removeTodo, updateTodo} from '../../store/TodoListSlice';
 import bin from '../../bin.svg';
 import './TodoListItem.css';
 
@@ -39,7 +39,7 @@ function Todo(props) {
                             placeholder="Deadline"
                             onDateChange={date => {
                                 setDate(moment(date));
-                                dispatch(addDeadline({id: todo.id, deadline: date.format("YYYY-MM-DD")}));
+                                dispatch(updateTodo({...todo, deadline: date.format("YYYY-MM-DD")}));
                             }}
                             onFocusChange={({focused}) => setFocused(focused)}
                             focused={focused}
@@ -50,12 +50,12 @@ function Todo(props) {
                     </span>
                 }
                 {!todo.completed &&
-                <button type="button" onClick={() => dispatch(done(todo.id))}>Done</button>
+                <button type="button" onClick={() => dispatch(updateTodo({...todo, completed: true}))}>Done</button>
                 }
                 {todo.completed &&
-                <button type="button" onClick={() => dispatch(undone(todo.id))}>Undone</button>
+                <button type="button" onClick={() => dispatch(updateTodo({...todo, completed: false}))}>Undone</button>
                 }
-                <button type="button" onClick={() => dispatch(remove(todo.id))}>
+                <button type="button" onClick={() => dispatch(removeTodo(todo))}>
                     <img src={bin} className="delete" alt="delete"/>
                 </button>
             </span>
